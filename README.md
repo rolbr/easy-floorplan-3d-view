@@ -6,6 +6,8 @@ A Home Assistant custom card that reads your [Easy Floorplan](https://github.com
 <img src="./docs/poster-2s.jpg" width="40%">
 <img src="./docs/poster-1s.jpg" width="40%">
 
+https://github.com/user-attachments/assets/6442806f-e3ca-46ba-901a-33db277c2f3f
+
 ## Disclaimer
 
 - Proof of concept — **expect loose ends**, and plenty of them
