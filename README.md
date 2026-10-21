@@ -42,8 +42,7 @@ Other versions may work, but are untested. Please report other working versions.
 ## Installation
 ### HACS
 -	Install [HACS](https://hacs.xyz/docs/use/download/download/), then click
-    - [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=rolbr&category=frontend&repository=https%3A%2F%2Fgithub.com%2Frolbr%2Feasy-floorplan-3d-view)
-
+    - [![Open Easy Floorplan - 3D View in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=rolbr&category=frontend&repository=easy-floorplan-3d-view)
 - or add manually:
   -	In HACS, open the menu `⋮`, choose `Custom repositories`, add the repo URL `https://github.com/rolbr/easy-floorplan-3d-view`, and pick the `Dashboard` category
   -	Download `Easy Floorplan - 3D View` and hard-reload your browser (`Ctrl/Cmd + Shift + R`)
