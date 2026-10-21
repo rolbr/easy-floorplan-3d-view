@@ -1,0 +1,162 @@
+ha-card[mode='dev'] {
+  box-shadow: 0 0 12px #49ffb6;
+}
+
+easy-floorplan-3d-view #container {
+  height: 60vh;
+  /* biome-ignore lint/suspicious/noDuplicateProperties: `height vh; height dvh;` is standard CSS feature fallback */
+  height: 60dvh;
+} /* DVH: mobile browsers with dynamic toolbars */
+@media (max-width: 768px) and (orientation: portrait) {
+  easy-floorplan-3d-view #container {
+    height: 50vh;
+    /* biome-ignore lint/suspicious/noDuplicateProperties: `height vh; height dvh;` is standard CSS feature fallback */
+    height: 50dvh;
+  }
+}
+@media (max-width: 768px) and (orientation: landscape) {
+  easy-floorplan-3d-view #container {
+    height: 30vh;
+    /* biome-ignore lint/suspicious/noDuplicateProperties: `height vh; height dvh;` is standard CSS feature fallback */
+    height: 30dvh;
+  }
+}
+@media (min-width: 769px) {
+  easy-floorplan-3d-view #container {
+    height: 60vh;
+  }
+}
+@media (hover: none) and (pointer: coarse) {
+  easy-floorplan-3d-view #controls-hint-mouse {
+    display: none;
+  }
+  easy-floorplan-3d-view #controls-hint-touch {
+    display: block;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  easy-floorplan-3d-view #controls-hint-mouse {
+    display: block;
+  }
+  easy-floorplan-3d-view #controls-hint-touch {
+    display: none;
+  }
+}
+
+/* Panel = small anchor box holding the button + the collapsible content */
+easy-floorplan-3d-view .panel {
+  position: absolute;
+  left: 10px;
+  width: 36px;
+  height: 36px;
+  font-size: 13px;
+  color: #222;
+}
+easy-floorplan-3d-view .panel.top {
+  top: 10px;
+}
+easy-floorplan-3d-view .panel.bottom {
+  bottom: 10px;
+}
+
+easy-floorplan-3d-view .panel .efp-btn {
+  position: absolute;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: #222;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+easy-floorplan-3d-view .panel.top .efp-btn {
+  top: 0;
+}
+easy-floorplan-3d-view .panel.bottom .efp-btn {
+  bottom: 0;
+}
+easy-floorplan-3d-view .panel ha-icon {
+  --mdc-icon-size: 2em;
+}
+easy-floorplan-3d-view .panel .efp-btn ha-icon {
+  --mdc-icon-size: 22px;
+}
+easy-floorplan-3d-view .panel .efp-btn i {
+  display: flex;
+  font-style: normal;
+}
+
+/* Button icon swap */
+easy-floorplan-3d-view .panel .efp-btn .close {
+  display: none;
+}
+easy-floorplan-3d-view .panel.efp-open .efp-btn .open {
+  display: none;
+}
+easy-floorplan-3d-view .panel.efp-open .efp-btn .close {
+  display: flex;
+}
+
+/* Content: hidden by default, shown when the panel has .efp-open */
+easy-floorplan-3d-view .panel .panel-content {
+  position: absolute;
+  left: 0;
+  width: max-content;
+  max-width: calc(100cqw - 20px);
+  box-sizing: border-box;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.25s ease,
+    visibility 0s linear 0.25s;
+}
+easy-floorplan-3d-view .panel.top .panel-content {
+  top: 44px;
+}
+easy-floorplan-3d-view .panel.bottom .panel-content {
+  bottom: 44px;
+}
+easy-floorplan-3d-view .panel.efp-open .panel-content {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    opacity 0.25s ease,
+    visibility 0s linear 0s;
+}
+
+easy-floorplan-3d-view #visibility-panel .panel-content label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+easy-floorplan-3d-view #legend {
+  display: flex;
+  gap: 1em;
+}
+easy-floorplan-3d-view #legend span > span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: middle;
+}

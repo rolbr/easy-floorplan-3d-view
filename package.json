@@ -1,0 +1,55 @@
+{
+  "name": "easy-floorplan-3d-view",
+  "version": "0.3.0",
+  "description": "3D view of an existing Easy Floorplan",
+  "type": "module",
+  "author": "Rolf Brocke",
+  "license": "MIT",
+  "packageManager": "pnpm@12.11.2",
+  "keywords": [
+    "home-assistant",
+    "lovelace",
+    "custom-card",
+    "hacs",
+    "floorplan"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rolbr/easy-floorplan-3d-view.git"
+  },
+  "homepage": "https://github.com/rolbr/easy-floorplan-3d-view",
+  "bugs": {
+    "url": "https://github.com/rolbr/easy-floorplan-3d-view/issues"
+  },
+  "scripts": {
+    "dev": "concurrently -n vite,build-w -c '#ffffff.bg#8400ff',#00E000 \"pnpm:dev:vite\" \"pnpm:dev:build-w\" ",
+    "dev:vite": "vite",
+    "dev:build": "vite build --mode development",
+    "dev:build-w": "vite build --watch --mode development",
+    "build": "vite build",
+    "typecheck": "tsc --noEmit",
+    "typecheck-w": "tsc --noEmit --watch",
+    "check": "biome check",
+    "check-fix": "biome check --write",
+    "check-ci": "biome ci",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "lucide": "1.52.0",
+    "suncalc": "2.1.1",
+    "three": "0.186.0",
+    "tslog": "5.2.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15",
+    "@types/three": "0.186.0",
+    "concurrently": "10.0.5",
+    "home-assistant-frontend-types": "2026.5.2770",
+    "home-assistant-js-websocket": "9.7.1",
+    "rollup-plugin-visualizer": "7.1.1",
+    "typescript": "7.0.2",
+    "vite": "8.3.2",
+    "vitest": "5.0.4"
+  }
+}
