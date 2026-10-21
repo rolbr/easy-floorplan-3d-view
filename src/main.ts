@@ -9,7 +9,7 @@ performance.mark('efp3d:import-complete');
 
 customElements.define(TAG_NAMES.card, EasyFloorplan3DCard);
 
-const dev_suffix =__DEV_BUILD__ ? ' DEV' : '';
+const dev_suffix = __DEV_BUILD__ ? ' DEV' : '';
 
 window.customCards = window.customCards || [];
 window.customCards.push({
@@ -18,8 +18,4 @@ window.customCards.push({
   description: '3D view sourced from Easy Floorplan',
 });
 // biome-ignore lint/suspicious/noConsole: one-off exception for startup banner
-console.info(
-  `%c EASY-FLOORPLAN-3D-VIEW %c ${pkg.version}${dev_suffix}`,
-  'background:#03a9f4; color:#fff',
-  'color:#03a9f4',
-);
+console.info(`%c EASY-FLOORPLAN-3D-VIEW %c ${pkg.version}${dev_suffix}`, 'background:#03a9f4; color:#fff', 'color:#03a9f4');
