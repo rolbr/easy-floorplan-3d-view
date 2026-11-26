@@ -1,14 +1,42 @@
-// furniture boxes (bathtub, toilet, sink, bed, sofa and generic types)
+// Source-authored models, with simple furniture as fallback
 
 import * as THREE from 'three';
 import { FURNITURE, toM } from '../config/constants';
-import type { FloorData, FloorplanFurniture } from '../types';
+import { detailedFurniture } from '../lib/furniture-models';
+import type { FloorData, FloorplanFurniture, FurnitureSourceSettings } from '../types';
 
-export function buildFurniture(group: THREE.Group, floorData: FloorData) {
+export function buildFurniture(group: THREE.Group, floorData: FloorData, settings?: FurnitureSourceSettings) {
   const material = new THREE.MeshStandardMaterial(FURNITURE.MATERIAL_PARAMS);
 
   for (const furniture of floorData.furniture || []) {
-    addFurniture(group, furniture, material);
+    const detailed = detailedFurniture(furniture, settings);
+    if (detailed !== undefined) {
+      const item = new THREE.Group();
+      item.position.set(toM(furniture.x), 0, toM(furniture.y));
+      item.rotation.y = -THREE.MathUtils.degToRad(furniture.angle ?? 0);
+      item.userData.furnitureId = furniture.id;
+      for (const part of detailed) {
+        const shape = new THREE.Shape();
+        part.base.forEach(([x, y], i) => {
+          if (i === 0) shape.moveTo(toM(x), -toM(y));
+          else shape.lineTo(toM(x), -toM(y));
+        });
+        shape.closePath();
+        const geometry = new THREE.ExtrudeGeometry(shape, { depth: toM(part.z1 - part.z0), bevelEnabled: false });
+        geometry.rotateX(-Math.PI / 2);
+        const partMaterial = part.glass
+          ? new THREE.MeshStandardMaterial({ color: 0x8ecdf0, transparent: true, opacity: 0.3, roughness: 0.1, side: THREE.DoubleSide })
+          : material;
+        const mesh = new THREE.Mesh(geometry, partMaterial);
+        mesh.position.y = toM(part.z0);
+        mesh.castShadow = !part.glass;
+        mesh.receiveShadow = true;
+        item.add(mesh);
+      }
+      group.add(item);
+    } else {
+      addFurniture(group, furniture, material);
+    }
   }
 }
 

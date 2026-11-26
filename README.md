@@ -87,3 +87,24 @@ north_marker: # optional
 ## License
 
 MIT, see [LICENSE](LICENSE.md)
+
+### Detailed furniture from the source card
+
+Enable **3D furniture** in the original Easy Floorplan card to render its version-1
+`model3d` parts as Three.js meshes. Boxes, cylinders, convex extrusions, repeated
+parts and glass are supported. The source's custom `symbols` override the bundled
+built-in catalog. The bundled catalog is a snapshot of Easy Floorplan at commit
+`db6c68c5bd8d459d81179665c99c4ec57993ed3c`; newly added built-ins require a catalog update
+(or a custom symbol in the source card).
+
+Footprint, angle, `height3d`, per-piece `elevation.from` (including zero), and symbol
+mounting defaults follow the source. `elevation.to` does not set the height of a detailed
+model. Furniture is cut, not compressed: it follows source `wallHeight`, or
+`furnitureSectionHeight` when `furnitureSeparateSection` is enabled. This viewer's
+Cut-away slider controls walls independently. Source changes are picked up when the
+source is reloaded. Missing/invalid models and disabled 3D furniture retain the viewer's
+simple fallback shapes. The source's 2D/3D view selection does not disable this dedicated
+3D viewer.
+
+The catalog and model validator are derived from [Easy Floorplan](https://github.com/nicosandller/easy-floorplan).
+See [its MIT license](docs/easy-floorplan-license.txt).

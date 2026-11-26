@@ -37,7 +37,12 @@ export async function loadFloorData(hass: HomeAssistant, source: SourceConfig): 
 
   log.trace('fetchFloorData', floorData);
 
-  return { floor: floorData, rotation: sourceCard.rotation };
+  const { furniture3d, furnitureSeparateSection, furnitureSectionHeight, wallHeight, symbols } = sourceCard;
+  return {
+    floor: floorData,
+    rotation: sourceCard.rotation,
+    furnitureSettings: { furniture3d, furnitureSeparateSection, furnitureSectionHeight, wallHeight, symbols },
+  };
 }
 
 // --- Floor cache: lets the card paint instantly, then revalidate ---------

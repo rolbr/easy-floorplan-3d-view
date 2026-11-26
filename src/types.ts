@@ -199,7 +199,17 @@ export type FloorplanText = {
   entity?: string;
 };
 
+export type FurnitureSourceSettings = {
+  furniture3d?: boolean;
+  furnitureSeparateSection?: boolean;
+  furnitureSectionHeight?: number;
+  wallHeight?: number;
+  symbols?: Record<string, { model3d?: unknown; elevation?: { from?: number; to?: number } }>;
+};
+
 export type FloorplanFurniture = {
+  height3d?: number;
+  elevation?: { from?: number; to?: number };
   id: string;
   type: string;
   x: number;
@@ -235,7 +245,7 @@ export type FloorData = {
   areas: FloorplanArea[];
 };
 
-export interface FloorplanCardConfig extends LovelaceCardConfig {
+export interface FloorplanCardConfig extends LovelaceCardConfig, FurnitureSourceSettings {
   type: typeof FLOORPLAN_CARD_TYPE;
   width: number;
   height: number;
@@ -382,6 +392,7 @@ export type AreaMesh = THREE.Mesh<THREE.ShapeGeometry | THREE.ExtrudeGeometry, T
  */
 export interface LoadedFloor {
   floor: FloorData;
+  furnitureSettings?: FurnitureSourceSettings;
   rotation?: number;
 }
 

@@ -1,0 +1,15 @@
+<html><body style="margin:0;background:#e8edf3"><script type="module">
+import * as T from 'three';import {buildFurniture} from '../src/builder/furniture.ts';
+const scene=new T.Scene();scene.background=new T.Color('#e8edf3');const camera=new T.PerspectiveCamera(35,1.6,.01,100);camera.position.set(9,7,12);camera.lookAt(2,1,1.5);
+const renderer=new T.WebGLRenderer({antialias:true});renderer.setSize(1440,900);document.body.append(renderer.domElement);
+scene.add(new T.HemisphereLight(0xffffff,0x667788,3));const light=new T.DirectionalLight(0xffffff,3);light.position.set(4,8,5);scene.add(light);
+const group=new T.Group();scene.add(group);buildFurniture(group,{furniture:[
+{id:'s',type:'ladderShelf',x:0,y:0,w:80,h:40,angle:0},
+{id:'b',type:'bunkBed',x:170,y:50,w:210,h:100,angle:0},
+{id:'t',type:'table',x:400,y:50,w:120,h:80,angle:0},
+{id:'bath',type:'cornerShowerCurved',x:70,y:250,w:100,h:100,angle:0},
+{id:'plant',type:'indoorPalm',x:300,y:250,w:40,h:40,angle:0},
+{id:'tv',type:'tv',x:400,y:0,w:100,h:20,angle:0,elevation:{from:100}}
+]}, {furniture3d:true,wallHeight:200,furnitureSeparateSection:true,furnitureSectionHeight:220});
+const plane=new T.Mesh(new T.PlaneGeometry(7,5),new T.MeshStandardMaterial({color:0xd0d9de}));plane.rotation.x=-Math.PI/2;plane.position.set(2,-.01,1.5);scene.add(plane);renderer.render(scene,camera);window.done=true;
+</script></body></html>

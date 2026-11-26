@@ -291,7 +291,7 @@ export class EasyFloorplan3DCard extends HTMLElement {
       return [];
     }
 
-    const model = buildModel(this._world, floor, this._config);
+    const model = buildModel(this._world, floor, this._config, loaded.furnitureSettings);
     this._modelGroup = model.group;
     this._loaded = loaded;
     this._frameCamera();
