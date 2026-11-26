@@ -80,3 +80,10 @@ All reads of dashboard configs go through `src/lib/lovelace.ts` (`fetchDashboard
 - Vitest, tests next to the code as `*.test.ts`
 - Test pure logic (helpers, resolvers, loaders) with plain fixtures. Stub `hass.connection.sendMessagePromise` instead of mocking modules
 - Add a test with every bug fix or new helper in `lib/` or `utils/`
+
+## Detailed source furniture
+
+- `load-floor.ts` retains source furniture settings and custom symbols in `LoadedFloor`; they participate in the cache signature
+- `lib/furniture-models.ts` resolves custom symbols before the bundled catalog, validates version-1 geometry, and scales/sections in source canvas units
+- `builder/furniture.ts` maps model XY/Z to Three.js XZ/Y and builds closed cut surfaces; source cuts remain independent of this viewer's wall cut control
+- The bundled catalog and model validator derive from Easy Floorplan under MIT; preserve `docs/easy-floorplan-license.txt` when updating them

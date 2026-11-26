@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 import { DOOR_MATERIAL_PARAMS, GLASS_MATERIAL_PARAMS, RAIL_MATERIAL_PARAMS, WALL_HEIGHT, WALL_MATERIAL_PARAMS } from '../config/constants';
 import { log } from '../lib/logger';
-import type { AreaController, CardConfig, FloorData, FloorplanModel, World } from '../types';
+import type { AreaController, CardConfig, FloorData, FloorplanModel, FurnitureSourceSettings, World } from '../types';
 import { disposeObject3D } from '../utils/threejs';
 import { buildAreas, createAreaController } from './areas';
 import { createClipCaps } from './clip';
@@ -12,7 +12,7 @@ import { buildItems } from './items';
 import { buildNorthMarker } from './north-marker';
 import { buildCorners, buildWalls } from './walls';
 
-function buildFloorplan(floorData: FloorData): FloorplanModel {
+function buildFloorplan(floorData: FloorData, settings?: FurnitureSourceSettings): FloorplanModel {
   const group = new THREE.Group();
   const wallsGroup = new THREE.Group();
   group.add(wallsGroup);
@@ -39,7 +39,7 @@ function buildFloorplan(floorData: FloorData): FloorplanModel {
 
   const furnitureGroup = new THREE.Group();
   group.add(furnitureGroup);
-  buildFurniture(furnitureGroup, floorData);
+  buildFurniture(furnitureGroup, floorData, settings);
 
   const { pickableItems, itemsGroup, glowGroup, issues } = buildItems(group, floorData);
 
@@ -62,8 +62,13 @@ function buildFloorplan(floorData: FloorData): FloorplanModel {
 }
 
 /** Build the floorplan, add it to the scene and attach the north marker. */
-export function buildModel(world: World, floor: FloorData, config: CardConfig | undefined): FloorplanModel {
-  const model = buildFloorplan(floor);
+export function buildModel(
+  world: World,
+  floor: FloorData,
+  config: CardConfig | undefined,
+  settings?: FurnitureSourceSettings,
+): FloorplanModel {
+  const model = buildFloorplan(floor, settings);
   world.scene.add(model.group);
   buildNorthMarker(config?.north_offset ?? 0, model.group, config?.north_marker);
   return model;
